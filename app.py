@@ -2,6 +2,7 @@ from flask import Flask, request
 from main import find_words
 import re 
 
+
 app = Flask(__name__)
 
 @app.route("/")
@@ -32,3 +33,7 @@ def search():
     # print(greens, yellows, grays)
 
     return '<br>'.join(find_words(greens, yellows, grays))
+
+if __name__ == '__main__':
+    from waitress import serve 
+    serve(app, host="0.0.0.0", port=5005)
