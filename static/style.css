@@ -1,0 +1,44 @@
+
+main {
+    display: grid;
+    grid-template-rows: repeat(3, max-content);
+}
+
+section {
+    display: grid;
+    grid-template-columns: repeat(5, max-content) ;
+    grid-template-rows: 1fr 1fr;
+    /* columns: 5; */
+    row-gap: 0.5em;
+    column-gap: 0.5em;
+}
+
+#greens span, #yellows span {
+    grid-row: 2;
+}
+
+#greens input, #yellows input {
+    grid-row: 1;
+    justify-self: center;
+}
+
+.green-input {
+    width: 2em;
+
+}
+
+.green {
+    color: rgb(119, 161, 102);
+}
+
+.yellow {
+    color: rgb(197, 181, 102);
+}
+
+.gray {
+    color: #666;
+}
+
+#results {
+    font-family: Menlo, "Meslo LG S", "Monaco", sans-serif;
+}
