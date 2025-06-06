@@ -25,7 +25,7 @@ def find_words(pos_correct_letter, pos_misplaced_letters, bad_letters, words=Non
         with open("/usr/share/dict/words", "r") as f:
             words = [i.lower() for i in f.read().splitlines() if len(i) == 5 and "'" not in i]
 
-    for word in (i for i in words if all(x not in i for x in bad_letters)):
+    for word in (i for i in set(words) if all(x not in i for x in bad_letters)):
         for index in range(5):
             # letter belongs at this space
             if pos_correct_letter[index] and pos_correct_letter[index] != word[index]:
