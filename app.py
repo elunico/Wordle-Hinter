@@ -32,7 +32,7 @@ def search():
     grays = request.args.get('grays').lower()
     grays = wonly.sub('', grays)
     
-    print(greens, yellows, grays)
+    # print(greens, yellows, grays)
 
     words = list(find_words(greens, yellows, grays))
     print(f'Request to {request.remote_addr} with {len(words)} words.')

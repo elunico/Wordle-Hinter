@@ -35,6 +35,8 @@ function doSubmission() {
       cDiv.innerHTML = `${count}&nbsp;`;
 
       let container = document.querySelector("#results");
+      container.innerHTML = "";
+
       for (let word of words) {
         container.append(`${word}`);
         container.append(document.createElement("br"));
