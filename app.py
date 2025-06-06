@@ -20,19 +20,10 @@ def search():
     grays = []
 
     for i in range(1, 6):
-        g = request.args.get(f'g{i}').lower()
-        y = request.args.get(f'y{i}').lower()
-
-        g = wonly.sub('', g)
-        y = wonly.sub('', y)
-
-        greens[i-1] = g 
-        yellows[i-1] = y 
+        greens[i-1] = wonly.sub('', request.args.get(f'g{i}').lower())
+        yellows[i-1] = wonly.sub('', request.args.get(f'y{i}').lower())
     
-    grays = request.args.get('grays').lower()
-    grays = wonly.sub('', grays)
-    
-    # print(greens, yellows, grays)
+    grays = wonly.sub('', request.args.get('grays').lower())
 
     words = list(find_words(greens, yellows, grays))
     print(f'Request to {request.remote_addr} with {len(words)} words.')

@@ -1,5 +1,3 @@
-
-
 # put green letters in their position here
 pos_correct_letter = {
     0: '',
@@ -12,14 +10,14 @@ pos_correct_letter = {
 # put *all* yellow letters in each position into each string
 pos_misplaced_letters = {
     0: '',
-    1: 'i',
-    2: 'd',
-    3: 'e',
-    4: 'e',
+    1: '',
+    2: '',
+    3: '',
+    4: '',
 }
 
 # put all the grey letters into this string
-bad_letters = 'wasrthnclo'
+bad_letters = ''
 
 
 def find_words(pos_correct_letter, pos_misplaced_letters, bad_letters, words=None):

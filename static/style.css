@@ -8,13 +8,13 @@ section {
     display: grid;
     grid-template-columns: repeat(5, max-content) ;
     grid-template-rows: 1fr 1fr;
-    /* columns: 5; */
     row-gap: 0.5em;
     column-gap: 0.5em;
 }
 
 #greens span, #yellows span {
     grid-row: 2;
+    justify-self: center;
 }
 
 #greens input, #yellows input {
