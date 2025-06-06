@@ -27,9 +27,17 @@ function doSubmission() {
   console.log(url);
 
   fetch(url)
-    .then((resp) => resp.text())
-    .then((text) => {
-      let r = document.querySelector("#results");
-      r.innerHTML = text;
+    .then((resp) => resp.json())
+    .then((obj) => {
+      let words = obj.words;
+      let count = words.length;
+      let cDiv = document.querySelector("#pos-count");
+      cDiv.innerHTML = `${count}&nbsp;`;
+
+      let container = document.querySelector("#results");
+      for (let word of words) {
+        container.append(`${word}`);
+        container.append(document.createElement("br"));
+      }
     });
 }
