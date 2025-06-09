@@ -20,11 +20,7 @@ pos_misplaced_letters = {
 bad_letters = ''
 
 
-def find_words(pos_correct_letter, pos_misplaced_letters, bad_letters, words=None):
-    if words is None: 
-        with open("/usr/share/dict/words", "r") as f:
-            words = [i.lower() for i in f.read().splitlines() if len(i) == 5 and "'" not in i]
-
+def find_words(pos_correct_letter, pos_misplaced_letters, bad_letters, words):
     for word in (i for i in set(words) if all(x not in i for x in bad_letters)):
         for index in range(5):
             # letter belongs at this space
@@ -39,7 +35,3 @@ def find_words(pos_correct_letter, pos_misplaced_letters, bad_letters, words=Non
                 break
         else:
             yield word
-
-
-if __name__ == "__main__":
-    find_words(pos_correct_letter, pos_misplaced_letters, bad_letters)

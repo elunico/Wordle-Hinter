@@ -41,4 +41,5 @@ section {
 
 #results {
     font-family: Menlo, "Meslo LG S", "Monaco", sans-serif;
+    grid-template-rows: 1fr;
 }

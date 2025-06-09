@@ -29,12 +29,17 @@ function doSubmission() {
   fetch(url)
     .then((resp) => resp.json())
     .then((obj) => {
-      let words = obj.words;
-      let count = words.length;
+      let container = document.querySelector("#results");
       let cDiv = document.querySelector("#pos-count");
+      if (obj.status != 200) {
+        container.innerHTML = "ERROR: INVALID REQUEST";
+        cDiv.innerHTML = "ERR";
+        return;
+      }
+      let words = obj.result.words;
+      let count = words.length;
       cDiv.innerHTML = `${count}&nbsp;`;
 
-      let container = document.querySelector("#results");
       container.innerHTML = "";
 
       for (let word of words) {
