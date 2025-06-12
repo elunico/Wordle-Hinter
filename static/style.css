@@ -1,30 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap'); */
+
+
+:root {
+    --the-font: "Onest";
+    --my-font-size: 2em;
+    --text-color: rgb(51, 51, 51);
+    --green-color:  rgb(119, 161, 102);   
+    --yellow-color: rgb(197, 181, 102);
+    --letter-border: 5px solid black;
+    --letter-border-inactive: 5px solid white;
+}
+
+h1, h2 {
+    font-family: var(--the-font);
+}
+
+body {
+    font-family: var(--the-font);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
 
 main {
     display: grid;
     grid-template-rows: repeat(3, max-content);
+    width: calc(var(--my-font-size) * 5);
+    width: min-content;
+    justify-items: center;
 }
 
 section {
     display: grid;
-    grid-template-columns: repeat(5, max-content) ;
     grid-template-rows: 1fr 1fr;
     row-gap: 0.5em;
     column-gap: 0.5em;
+    
 }
 
-#greens span, #yellows span {
+#greens {
+ grid-template-columns: repeat(5, 1fr);   
+ width: min-content;
+}
+
+#yellows {
+    grid-template-columns: repeat(5, 1fr);
+}
+
+#grays {
+    grid-template-columns: 1fr;
+}
+
+
+#greens span, #yellows span, #grays span {
     grid-row: 2;
     justify-self: center;
 }
 
-#greens input, #yellows input {
+#greens input, #yellows input, #grays input {
     grid-row: 1;
     justify-self: center;
 }
 
-.green-input {
-    width: 2em;
+.any-input {
+    height: var(--my-font-size);
+    font-size: var(--my-font-size);
+    text-align: center;
+    font-family: "Helvetica Neue Condensed Black";
+    text-transform: uppercase;
+    /* color: var(--text-color) !important; */
+    border: var(--letter-border-inactive);
+    box-shadow: 0px 0px 2px black;
+}
 
+.any-input:focus {
+    outline: none;
+    border: var(--letter-border);
+}
+
+.green-input {
+    width: var(--my-font-size);
+}
+
+.yellow-in {
+    width: calc(var(--my-font-size) * 3);
 }
 
 .green {
