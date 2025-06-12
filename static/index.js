@@ -16,6 +16,12 @@ document.onreadystatechange = function () {
 
     for (let idx = 0; idx < 5; idx++) {
       let inelt = greenInputs[idx];
+      inelt.addEventListener("keydown", function (event) {
+        console.log(event.key);
+        if (event.key == "Backspace") {
+          greenInputs[(idx - 1 + 5) % 5].focus();
+        }
+      });
       inelt.addEventListener("input", function () {
         // if (this.value.length > 1) {
         //   this.value = this.value.charAt(this.value.length - 1);
@@ -24,22 +30,22 @@ document.onreadystatechange = function () {
           if (this.value == " ") {
             this.value = "";
           }
-          greenInputs[idx + 1].focus();
+          greenInputs[(idx + 1) % 5].focus();
         }
       });
 
-      inelt.addEventListener("keypress", function () {
+      inelt.addEventListener("keypress", function (event) {
         if (event.key == "Enter") button.click();
       });
     }
 
     for (let y of yellowInputs) {
-      y.addEventListener("keypress", function () {
+      y.addEventListener("keypress", function (event) {
         if (event.key == "Enter") button.click();
       });
     }
 
-    grayInput.addEventListener("keypress", function () {
+    grayInput.addEventListener("keypress", function (event) {
       if (event.key == "Enter") button.click();
     });
   }
