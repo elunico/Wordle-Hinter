@@ -17,16 +17,19 @@ document.onreadystatechange = function () {
     for (let idx = 0; idx < 5; idx++) {
       let inelt = greenInputs[idx];
       inelt.addEventListener("keydown", function (event) {
-        console.log(event.key);
         if (event.key == "Backspace") {
+          this.value = "";
           greenInputs[(idx - 1 + 5) % 5].focus();
+          event.stopPropagation();
+          event.preventDefault();
         }
       });
       inelt.addEventListener("input", function () {
-        // if (this.value.length > 1) {
-        //   this.value = this.value.charAt(this.value.length - 1);
-        // }
+        if (this.value.length > 1) {
+          this.value = this.value.charAt(this.value.length - 1);
+        }
         if (this.value.length == 1) {
+          console.log(this.value);
           if (this.value == " ") {
             this.value = "";
           }
