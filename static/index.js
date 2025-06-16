@@ -8,7 +8,7 @@ let yellowInputs = [];
 let grayInput = document.querySelector("#gray-in");
 
 document.onreadystatechange = function () {
-  if (document.readyState == "complete") {
+  if (document.readyState === "complete") {
     for (let i = 1; i <= 5; i++) {
       yellowInputs.push(document.querySelector(`#yellow${i}-in`));
       greenInputs.push(document.querySelector(`#green${i}-in`));
@@ -17,39 +17,54 @@ document.onreadystatechange = function () {
     for (let idx = 0; idx < 5; idx++) {
       let inelt = greenInputs[idx];
       inelt.addEventListener("keydown", function (event) {
-        if (event.key == "Backspace") {
-          this.value = "";
-          greenInputs[(idx - 1 + 5) % 5].focus();
-          event.stopPropagation();
+        if (event.key === "Enter") {
+          button.click();
+          return;
+        }
+        if (event.key == "Backspace" && this.value == "") {
           event.preventDefault();
-        }
-      });
-      inelt.addEventListener("input", function () {
-        if (this.value.length > 1) {
-          this.value = this.value.charAt(this.value.length - 1);
-        }
-        if (this.value.length == 1) {
-          console.log(this.value);
-          if (this.value == " ") {
-            this.value = "";
+          event.stopPropagation();
+          greenInputs[(idx + 5 - 1) % 5].focus();
+        } else if (event.key.length === 1 && event.key.match(/[a-zA-Z]/)) {
+          if (this.value.length >= 1) {
+            greenInputs[(idx + 1) % 5].focus();
           }
+        } else if (event.key === "ArrowRight") {
+          event.preventDefault();
+          event.stopPropagation();
           greenInputs[(idx + 1) % 5].focus();
+        } else if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          event.stopPropagation();
+          greenInputs[(idx + 5 - 1) % 5].focus();
+        } else if (
+          [
+            "Meta",
+            "Control",
+            "Shift",
+            "Alt",
+            "Backspace",
+            "Return",
+            "Enter",
+            "Escape",
+          ].includes(event.key)
+        ) {
+          // Do nothing for modifier keys
+        } else {
+          event.preventDefault();
+          event.stopPropagation();
         }
-      });
-
-      inelt.addEventListener("keypress", function (event) {
-        if (event.key == "Enter") button.click();
       });
     }
 
     for (let y of yellowInputs) {
       y.addEventListener("keypress", function (event) {
-        if (event.key == "Enter") button.click();
+        if (event.key === "Enter") button.click();
       });
     }
 
     grayInput.addEventListener("keypress", function (event) {
-      if (event.key == "Enter") button.click();
+      if (event.key === "Enter") button.click();
     });
   }
 };
@@ -78,7 +93,7 @@ function doSubmission() {
     .then((obj) => {
       let container = document.querySelector("#results");
       let cDiv = document.querySelector("#pos-count");
-      if (obj.status != 200) {
+      if (obj.status !== 200) {
         container.innerHTML = "ERROR: INVALID REQUEST";
         cDiv.innerHTML = "ERR";
         return;

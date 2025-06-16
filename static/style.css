@@ -17,11 +17,11 @@
 h1,
 h2,
 input {
-  font-family: var(--main-font);
+  font-family: var(--main-font), sans-serif;
 }
 
 body {
-  font-family: var(--main-font);
+  font-family: var(--main-font), sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -89,6 +89,7 @@ section {
 
 .green-input {
   width: var(--box-base);
+  /* width: 20%; */
 }
 
 .yellow-in {
